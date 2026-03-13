@@ -438,7 +438,7 @@ def _input_tags(page: Page, content_selector: str, tags: list[str]) -> None:
     time.sleep(0.3)
 
     # 使用 ArrowDown 键回到正文结尾
-    for _ in range(100):
+    for _ in range(500):
         page.press_key("ArrowDown")
         time.sleep(0.01)
 
