@@ -104,35 +104,35 @@ metadata:
 
 ```bash
 # 1. 启动 Chrome
-python scripts/chrome_launcher.py
+uv run scripts/chrome_launcher.py
 
 # 2. 检查登录状态
-python scripts/cli.py check-login
+uv run scripts/cli.py check-login
 
 # 3. 登录（如需要）
-python scripts/cli.py login
+uv run scripts/cli.py login
 
 # 4. 搜索笔记
-python scripts/cli.py search-feeds --keyword "关键词"
+uv run scripts/cli.py search-feeds --keyword "关键词"
 
 # 5. 查看笔记详情
-python scripts/cli.py get-feed-detail \
+uv run scripts/cli.py get-feed-detail \
   --feed-id FEED_ID --xsec-token XSEC_TOKEN
 
 # 6. 发布图文
-python scripts/cli.py publish \
+uv run scripts/cli.py publish \
   --title-file title.txt \
   --content-file content.txt \
   --images "/abs/path/pic1.jpg"
 
 # 7. 发表评论
-python scripts/cli.py post-comment \
+uv run scripts/cli.py post-comment \
   --feed-id FEED_ID \
   --xsec-token XSEC_TOKEN \
   --content "评论内容"
 
 # 8. 点赞
-python scripts/cli.py like-feed \
+uv run scripts/cli.py like-feed \
   --feed-id FEED_ID --xsec-token XSEC_TOKEN
 ```
 
