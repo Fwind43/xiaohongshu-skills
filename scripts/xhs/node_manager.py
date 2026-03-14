@@ -39,16 +39,17 @@ _EXTRACT_NOTES_FROM_DOM_JS = r"""
             }
         }
         
-        // 提取互动数据
-        let likeCount = '', collectCount = '', commentCount = '', shareCount = '';
+        // 提取互动数据（顺序：浏览、评论、点赞、收藏、分享）
+        let viewCount = '', commentCount = '', likeCount = '', collectCount = '', shareCount = '';
         const icons = note.querySelectorAll('.icon_list .icon');
         icons.forEach((icon, idx) => {
             const span = icon.querySelector('span');
             const count = span ? span.textContent.trim() : '';
-            if (idx === 0) likeCount = count;
-            else if (idx === 1) collectCount = count;
-            else if (idx === 2) commentCount = count;
-            else if (idx === 3) shareCount = count;
+            if (idx === 0) viewCount = count;
+            else if (idx === 1) commentCount = count;
+            else if (idx === 2) likeCount = count;
+            else if (idx === 3) collectCount = count;
+            else if (idx === 4) shareCount = count;
         });
         
         // 从 note-info 属性提取 noteId
@@ -71,14 +72,15 @@ _EXTRACT_NOTES_FROM_DOM_JS = r"""
         const showPerm = note.getAttribute('show-perm');
         
         if (title) {
-            notes.push({ 
-                noteId, 
-                title, 
-                coverUrl, 
+            notes.push({
+                noteId,
+                title,
+                coverUrl,
                 status,
+                viewCount,
+                commentCount,
                 likeCount,
                 collectCount,
-                commentCount,
                 shareCount,
                 isTop: showTop === 'true',
             });
@@ -210,9 +212,10 @@ def list_notes(
                         title=item.get("title", ""),
                         cover_url=item.get("coverUrl", ""),
                         status=item.get("status", ""),
+                        view_count=item.get("viewCount", ""),
+                        comment_count=item.get("commentCount", ""),
                         like_count=item.get("likeCount", ""),
                         collect_count=item.get("collectCount", ""),
-                        comment_count=item.get("commentCount", ""),
                         share_count=item.get("shareCount", ""),
                     ))
                 return NoteManagerList(notes=notes, total=len(notes))

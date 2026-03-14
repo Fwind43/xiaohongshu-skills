@@ -182,9 +182,10 @@ uv run scripts/cli.py list-notes
 - `title`：笔记标题
 - `status`：发布状态（已发布/定时发布/审核中等）
 - `coverUrl`：封面图片 URL
+- `viewCount`：浏览量
+- `commentCount`：评论数
 - `likeCount`：点赞数
 - `collectCount`：收藏数
-- `commentCount`：评论数
 - `shareCount`：分享数
 
 #### 筛选参数（可选）
